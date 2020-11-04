@@ -23,7 +23,6 @@ router.get('/',(req,res,next)=>{
   //SELECT * FROM cars
   db.select('*').from('cars')
     .then(cars =>{
-
       res.status(200).json({ data:cars });
     })
     .catch(err=>{
@@ -37,8 +36,13 @@ router.get('/',(req,res,next)=>{
 //----------------------------
 
 router.get('/:id',(req,res,next)=>{
-  const id = req.params;
-  db.select('*').from('cars').where()
+  const { id } = req.params;
+
+  //select * from posts where id=id
+  db.select('*')
+    .from('cars')
+    .where("id",id)
+
     .then(car=>{
       res.status(200).json({ data:car });
     })
