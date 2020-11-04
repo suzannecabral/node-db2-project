@@ -42,7 +42,7 @@ router.get('/:id',(req,res,next)=>{
   db.select('*')
     .from('cars')
     .where("id",id)
-
+    .first()
     .then(car=>{
       res.status(200).json({ data:car });
     })
