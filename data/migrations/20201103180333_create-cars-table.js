@@ -9,7 +9,7 @@ exports.up = function(knex) {
 
     //vin
     //req, text, unique, 17 characters
-    tbl.integer('vin', 17)
+    tbl.text('vin', 17)
       .notNullable()
       .unique();
 
