@@ -106,7 +106,7 @@ router.get('/:id', validCarId ,(req,res,next)=>{
     })
     .catch(err=>{
       console.log('error: ', err);
-      res.status(500).json({ message: error.message });
+      res.status(500).json({ message: err.message });
     });
 });
 
