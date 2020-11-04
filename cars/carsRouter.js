@@ -1,5 +1,5 @@
 const express = require('express');
-const Cars = require('../data/carsModel');
+// const Cars = require('../data/carsModel');
 
 const router = express.Router();
 
