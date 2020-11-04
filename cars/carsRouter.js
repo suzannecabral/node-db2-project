@@ -1,6 +1,6 @@
 const express = require('express');
 // const Cars = require('../data/carsModel');
-
+const db = require('../data/dbConfig');
 const router = express.Router();
 
 //----------------------------
@@ -13,13 +13,23 @@ const router = express.Router();
 //----------------------------
 // BaseURL/api/cars
 //----------------------------
-
+// throw({message:"Testing Error Messsages"});
 
 //  GET / 
 //----------------------------
 
 router.get('/',(req,res,next)=>{
+  //get a list of cars from the database
+  //SELECT * FROM cars
+  db.select('*').from('cars')
+    .then(cars =>{
 
+      res.status(200).json({ data:cars });
+    })
+    .catch(err=>{
+      console.log('error: ', err);
+      res.status(500).json({ message: err.message });
+    });
 });
 
 
@@ -27,7 +37,15 @@ router.get('/',(req,res,next)=>{
 //----------------------------
 
 router.get('/:id',(req,res,next)=>{
-
+  const id = req.params;
+  db.select('*').from('cars').where()
+    .then(car=>{
+      res.status(200).json({ data:car });
+    })
+    .catch(err=>{
+      console.log('error: ', err);
+      res.status(500).json({ message: error.message });
+    });
 });
 
 
@@ -57,6 +75,14 @@ router.put('/:id',(req,res,next)=>{
 
 });
 
+//Error handler
+//----------------------------
+
+//this doesn't work as a callback, troubleshoot
+// const handleError = () => {
+//   console.log('error: ', err);
+//   res.status(500).json({ message: error.message });
+// }
 
 
 //  export
